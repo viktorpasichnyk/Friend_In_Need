@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="D:\Android\Projects\AndroidStudioProjects\TEST\Friend_In_Need\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-5c13dae993a3a70564280b74f4a6300075997e8b.jar" />
+    </item>
+    <item
+        jar="D:\Android\Projects\AndroidStudioProjects\TEST\Friend_In_Need\app\libs\bitlyj-2.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="469480dfeafed24c6725f0841728e999743d862d">
+        <dex dex="D:\Android\Projects\AndroidStudioProjects\TEST\Friend_In_Need\app\build\intermediates\pre-dexed\debug\bitlyj-2.0.0-35bb9a6eec4e80b67385c68a41b517b8d4b3d259.jar" />
+    </item>
+
+</items>

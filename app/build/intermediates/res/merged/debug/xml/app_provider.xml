@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="290dip"
+	android:minHeight="72dip"
+	android:updatePeriodMillis="60000"
+	android:initialLayout="@layout/widget_layout"
+	android:resizeMode="horizontal|vertical"
+    />
+<!-- From: file:/D:/Android/Projects/AndroidStudioProjects/TEST/Friend_In_Need/app/src/main/res/xml/app_provider.xml -->
