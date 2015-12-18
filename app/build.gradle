@@ -21,4 +21,6 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:18.0.0'
     compile files('libs/bitlyj-2.0.0.jar')
+    compile 'com.google.code.gson:gson:2.3'
+
 }

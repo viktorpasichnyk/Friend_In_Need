@@ -18,18 +18,25 @@ import android.widget.Toast;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
-    private static final String CONTACTS_SET_KEY = "contacts";
+    public static final String PREFS_NAME = "PRODUCT_APP";
+    private static final String CONTACTS_SET_KEY = "contacts2";
+
 
     SharedPreferences sPref;
     Button btnAddContact;
     EditText etEnterContactNumber;
     ListView lvContactNumbers;
     Set<String> contactsDefaultSet = new HashSet<String>();
+//    String PHONE_REGEX = "^\\+(?:[0-9]●?){6,14}[0-9]$";
+    String PHONE_REGEX = "^((\\+\\d{1,3}(-| )?\\(?\\d\\)?(-| )?\\d{1,3})|(\\(?\\d{2,3}\\)?))(-| )?(\\d{3,4})(-| )?(\\d{4})(( x| ext)\\d{1,5}){0,1}$";
+    Set<String> contactsStringSet;
+    Editor ed;
 
-
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +46,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
         btnAddContact = (Button) findViewById(R.id.btnAddContact);
         lvContactNumbers = (ListView) findViewById(R.id.lvContactNumbers);
 
+        sPref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        ed = sPref.edit();
+
+        etEnterContactNumber.setHint("Enter valid number here");
         btnAddContact.setOnClickListener(this);
         showContact();
-
-
     }
 
     @Override
@@ -54,33 +63,28 @@ public class MainActivity extends Activity implements View.OnClickListener{
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void addContact(){
 
-        sPref = getPreferences(MODE_PRIVATE);
-        Editor ed = sPref.edit();
+
+
         String phoneNumber = etEnterContactNumber.getText().toString();
-       phoneNumber = PhoneNumberUtils.formatNumber(phoneNumber);
+        phoneNumber = PhoneNumberUtils.formatNumber(phoneNumber);
         Toast.makeText(this, phoneNumber, Toast.LENGTH_SHORT).show();
-        if(PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber)){
-            Set<String> contactsStringSet = sPref.getStringSet(CONTACTS_SET_KEY, contactsDefaultSet);
-            contactsStringSet.add(phoneNumber);
+        if(PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber) && Pattern.matches(PHONE_REGEX, phoneNumber)){
+
+            contactsStringSet = sPref.getStringSet(CONTACTS_SET_KEY, contactsDefaultSet);
+            contactsStringSet.add(PhoneNumberUtils.formatNumber(phoneNumber));
+            ed.clear();
             ed.putStringSet(CONTACTS_SET_KEY, contactsStringSet);
             ed.commit();
             etEnterContactNumber.setText("");
             Toast.makeText(this, "Contact saved", Toast.LENGTH_SHORT).show();
         } else {
-
-//            etEnterContactNumber.setHint("Enter valide phone number");
-            etEnterContactNumber.setError("Enter valide phone number");
+            etEnterContactNumber.setError("Please enter valide phone number");
         }
-
-
-
-
-
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private Set<String> getContacts(){
-        sPref = getPreferences(MODE_PRIVATE);
+        sPref = getSharedPreferences(PREFS_NAME ,MODE_PRIVATE);
         Set<String> contactsStringSet = sPref.getStringSet(CONTACTS_SET_KEY, contactsDefaultSet);
 
         return contactsStringSet;
@@ -95,7 +99,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 showContact();
                 break;
         }
-
     }
 
     private void showContact(){
@@ -105,4 +108,5 @@ public class MainActivity extends Activity implements View.OnClickListener{
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contactsArray);
         lvContactNumbers.setAdapter(adapter);
     }
+
 }

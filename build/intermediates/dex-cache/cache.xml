@@ -15,5 +15,12 @@
         sha1="469480dfeafed24c6725f0841728e999743d862d">
         <dex dex="D:\Android\Projects\AndroidStudioProjects\TEST\Friend_In_Need\app\build\intermediates\pre-dexed\debug\bitlyj-2.0.0-35bb9a6eec4e80b67385c68a41b517b8d4b3d259.jar" />
     </item>
+    <item
+        jar="C:\Users\Pasichnyk.VP\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3\5fc52c41ef0239d1093a1eb7c3697036183677ce\gson-2.3.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
+        <dex dex="D:\Android\Projects\AndroidStudioProjects\TEST\Friend_In_Need\app\build\intermediates\pre-dexed\debug\gson-2.3-6d7cecd99133fbc5b8a8953480994ceb17445a31.jar" />
+    </item>
 
 </items>
